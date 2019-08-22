@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+	<meta title="Using SWF Assets" package="org.openfl.tutorials.usingswfassets" version="1.0.0" company="OpenFL" />
+	<app main="Main" path="Export" file="UsingSWFAssets" />
+
+	<source path="Source" />
+
+	<haxelib name="openfl" />
+
+	<library path="Assets/fireman.swf" preload="true" generate="true" id="library"/>
+
+	<assets path="Assets" rename="assets" exclude="*.swf" />
+
+</project>
