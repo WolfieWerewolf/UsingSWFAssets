@@ -892,9 +892,9 @@ ApplicationMain.create = function(config) {
 	ManifestResources.init(config);
 	var _this = app.meta;
 	if(__map_reserved["build"] != null) {
-		_this.setReserved("build","20");
+		_this.setReserved("build","2");
 	} else {
-		_this.h["build"] = "20";
+		_this.h["build"] = "2";
 	}
 	var _this1 = app.meta;
 	if(__map_reserved["company"] != null) {
@@ -4214,11 +4214,8 @@ var Main = function() {
 	var _gthis = this;
 	openfl_display_Sprite.call(this);
 	var clip;
-	var subtitles_txt;
 	openfl_utils_Assets.loadLibrary("library").onComplete(function(_) {
 		clip = openfl_utils_Assets.getMovieClip("library:");
-		clip.addEventListener("showSubTitles",$bind(_gthis,_gthis.showSubTitles));
-		subtitles_txt = clip.getChildByName("subtitles_txt");
 		_gthis.addChild(clip);
 	});
 };
@@ -4226,11 +4223,7 @@ $hxClasses["Main"] = Main;
 Main.__name__ = "Main";
 Main.__super__ = openfl_display_Sprite;
 Main.prototype = $extend(openfl_display_Sprite.prototype,{
-	showSubTitles: function(e) {
-		window.console.log("==========================================");
-		window.console.log(e);
-	}
-	,__class__: Main
+	__class__: Main
 });
 var DocumentClass = function(current) {
 	current.addChild(this);
@@ -5067,162 +5060,6 @@ Lambda.array = function(it) {
 	}
 	return a;
 };
-var openfl_events_Event = function(type,bubbles,cancelable) {
-	if(cancelable == null) {
-		cancelable = false;
-	}
-	if(bubbles == null) {
-		bubbles = false;
-	}
-	this.type = type;
-	this.bubbles = bubbles;
-	this.cancelable = cancelable;
-	this.eventPhase = 2;
-};
-$hxClasses["openfl.events.Event"] = openfl_events_Event;
-openfl_events_Event.__name__ = "openfl.events.Event";
-openfl_events_Event.prototype = {
-	bubbles: null
-	,cancelable: null
-	,currentTarget: null
-	,eventPhase: null
-	,target: null
-	,type: null
-	,__isCanceled: null
-	,__isCanceledNow: null
-	,__preventDefault: null
-	,clone: function() {
-		var event = new openfl_events_Event(this.type,this.bubbles,this.cancelable);
-		event.eventPhase = this.eventPhase;
-		event.target = this.target;
-		event.currentTarget = this.currentTarget;
-		return event;
-	}
-	,formatToString: function(className,p1,p2,p3,p4,p5) {
-		var parameters = [];
-		if(p1 != null) {
-			parameters.push(p1);
-		}
-		if(p2 != null) {
-			parameters.push(p2);
-		}
-		if(p3 != null) {
-			parameters.push(p3);
-		}
-		if(p4 != null) {
-			parameters.push(p4);
-		}
-		if(p5 != null) {
-			parameters.push(p5);
-		}
-		return $bind(this,this.__formatToString).apply(this,[className,parameters]);
-	}
-	,isDefaultPrevented: function() {
-		return this.__preventDefault;
-	}
-	,preventDefault: function() {
-		if(this.cancelable) {
-			this.__preventDefault = true;
-		}
-	}
-	,stopImmediatePropagation: function() {
-		this.__isCanceled = true;
-		this.__isCanceledNow = true;
-	}
-	,stopPropagation: function() {
-		this.__isCanceled = true;
-	}
-	,toString: function() {
-		return this.__formatToString("Event",["type","bubbles","cancelable"]);
-	}
-	,__formatToString: function(className,parameters) {
-		var output = "[" + className;
-		var arg = null;
-		var _g = 0;
-		while(_g < parameters.length) {
-			var param = parameters[_g];
-			++_g;
-			arg = Reflect.field(this,param);
-			if(typeof(arg) == "string") {
-				output += " " + param + "=\"" + Std.string(arg) + "\"";
-			} else {
-				output += " " + param + "=" + Std.string(arg);
-			}
-		}
-		output += "]";
-		return output;
-	}
-	,__class__: openfl_events_Event
-};
-var openfl_events_TextEvent = function(type,bubbles,cancelable,text) {
-	if(text == null) {
-		text = "";
-	}
-	if(cancelable == null) {
-		cancelable = false;
-	}
-	if(bubbles == null) {
-		bubbles = false;
-	}
-	openfl_events_Event.call(this,type,bubbles,cancelable);
-	this.text = text;
-};
-$hxClasses["openfl.events.TextEvent"] = openfl_events_TextEvent;
-openfl_events_TextEvent.__name__ = "openfl.events.TextEvent";
-openfl_events_TextEvent.__super__ = openfl_events_Event;
-openfl_events_TextEvent.prototype = $extend(openfl_events_Event.prototype,{
-	text: null
-	,clone: function() {
-		var event = new openfl_events_TextEvent(this.type,this.bubbles,this.cancelable,this.text);
-		event.target = this.target;
-		event.currentTarget = this.currentTarget;
-		event.eventPhase = this.eventPhase;
-		return event;
-	}
-	,toString: function() {
-		return this.__formatToString("TextEvent",["type","bubbles","cancelable","text"]);
-	}
-	,__class__: openfl_events_TextEvent
-});
-var openfl_events_DataEvent = function(type,bubbles,cancelable,data) {
-	if(data == null) {
-		data = "";
-	}
-	if(cancelable == null) {
-		cancelable = false;
-	}
-	if(bubbles == null) {
-		bubbles = false;
-	}
-	openfl_events_TextEvent.call(this,type,bubbles,cancelable);
-	this.data = data;
-};
-$hxClasses["openfl.events.DataEvent"] = openfl_events_DataEvent;
-openfl_events_DataEvent.__name__ = "openfl.events.DataEvent";
-openfl_events_DataEvent.__super__ = openfl_events_TextEvent;
-openfl_events_DataEvent.prototype = $extend(openfl_events_TextEvent.prototype,{
-	data: null
-	,clone: function() {
-		var event = new openfl_events_DataEvent(this.type,this.bubbles,this.cancelable,this.data);
-		event.target = this.target;
-		event.currentTarget = this.currentTarget;
-		event.eventPhase = this.eventPhase;
-		return event;
-	}
-	,toString: function() {
-		return this.__formatToString("DataEvent",["type","bubbles","cancelable","data"]);
-	}
-	,__class__: openfl_events_DataEvent
-});
-var FLEvent = function(type,bubbles,cancelable,data) {
-	openfl_events_DataEvent.call(this,type,bubbles,cancelable,data);
-};
-$hxClasses["FLEvent"] = FLEvent;
-FLEvent.__name__ = "FLEvent";
-FLEvent.__super__ = openfl_events_DataEvent;
-FLEvent.prototype = $extend(openfl_events_DataEvent.prototype,{
-	__class__: FLEvent
-});
 var ManifestResources = function() { };
 $hxClasses["ManifestResources"] = ManifestResources;
 ManifestResources.__name__ = "ManifestResources";
@@ -23883,7 +23720,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 703998;
+	this.version = 700211;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -61365,6 +61202,93 @@ openfl_errors_TypeError.__super__ = openfl_errors_Error;
 openfl_errors_TypeError.prototype = $extend(openfl_errors_Error.prototype,{
 	__class__: openfl_errors_TypeError
 });
+var openfl_events_Event = function(type,bubbles,cancelable) {
+	if(cancelable == null) {
+		cancelable = false;
+	}
+	if(bubbles == null) {
+		bubbles = false;
+	}
+	this.type = type;
+	this.bubbles = bubbles;
+	this.cancelable = cancelable;
+	this.eventPhase = 2;
+};
+$hxClasses["openfl.events.Event"] = openfl_events_Event;
+openfl_events_Event.__name__ = "openfl.events.Event";
+openfl_events_Event.prototype = {
+	bubbles: null
+	,cancelable: null
+	,currentTarget: null
+	,eventPhase: null
+	,target: null
+	,type: null
+	,__isCanceled: null
+	,__isCanceledNow: null
+	,__preventDefault: null
+	,clone: function() {
+		var event = new openfl_events_Event(this.type,this.bubbles,this.cancelable);
+		event.eventPhase = this.eventPhase;
+		event.target = this.target;
+		event.currentTarget = this.currentTarget;
+		return event;
+	}
+	,formatToString: function(className,p1,p2,p3,p4,p5) {
+		var parameters = [];
+		if(p1 != null) {
+			parameters.push(p1);
+		}
+		if(p2 != null) {
+			parameters.push(p2);
+		}
+		if(p3 != null) {
+			parameters.push(p3);
+		}
+		if(p4 != null) {
+			parameters.push(p4);
+		}
+		if(p5 != null) {
+			parameters.push(p5);
+		}
+		return $bind(this,this.__formatToString).apply(this,[className,parameters]);
+	}
+	,isDefaultPrevented: function() {
+		return this.__preventDefault;
+	}
+	,preventDefault: function() {
+		if(this.cancelable) {
+			this.__preventDefault = true;
+		}
+	}
+	,stopImmediatePropagation: function() {
+		this.__isCanceled = true;
+		this.__isCanceledNow = true;
+	}
+	,stopPropagation: function() {
+		this.__isCanceled = true;
+	}
+	,toString: function() {
+		return this.__formatToString("Event",["type","bubbles","cancelable"]);
+	}
+	,__formatToString: function(className,parameters) {
+		var output = "[" + className;
+		var arg = null;
+		var _g = 0;
+		while(_g < parameters.length) {
+			var param = parameters[_g];
+			++_g;
+			arg = Reflect.field(this,param);
+			if(typeof(arg) == "string") {
+				output += " " + param + "=\"" + Std.string(arg) + "\"";
+			} else {
+				output += " " + param + "=" + Std.string(arg);
+			}
+		}
+		output += "]";
+		return output;
+	}
+	,__class__: openfl_events_Event
+};
 var openfl_events_ActivityEvent = function(type,bubbles,cancelable,activating) {
 	if(activating == null) {
 		activating = false;
@@ -61394,6 +61318,36 @@ openfl_events_ActivityEvent.prototype = $extend(openfl_events_Event.prototype,{
 		return this.__formatToString("ActivityEvent",["type","bubbles","cancelable","activating"]);
 	}
 	,__class__: openfl_events_ActivityEvent
+});
+var openfl_events_TextEvent = function(type,bubbles,cancelable,text) {
+	if(text == null) {
+		text = "";
+	}
+	if(cancelable == null) {
+		cancelable = false;
+	}
+	if(bubbles == null) {
+		bubbles = false;
+	}
+	openfl_events_Event.call(this,type,bubbles,cancelable);
+	this.text = text;
+};
+$hxClasses["openfl.events.TextEvent"] = openfl_events_TextEvent;
+openfl_events_TextEvent.__name__ = "openfl.events.TextEvent";
+openfl_events_TextEvent.__super__ = openfl_events_Event;
+openfl_events_TextEvent.prototype = $extend(openfl_events_Event.prototype,{
+	text: null
+	,clone: function() {
+		var event = new openfl_events_TextEvent(this.type,this.bubbles,this.cancelable,this.text);
+		event.target = this.target;
+		event.currentTarget = this.currentTarget;
+		event.eventPhase = this.eventPhase;
+		return event;
+	}
+	,toString: function() {
+		return this.__formatToString("TextEvent",["type","bubbles","cancelable","text"]);
+	}
+	,__class__: openfl_events_TextEvent
 });
 var openfl_events_ErrorEvent = function(type,bubbles,cancelable,text,id) {
 	if(id == null) {
@@ -71304,49 +71258,6 @@ openfl_display_DisplayObject.__tempStack = new lime_utils_ObjectPool(function() 
 	stack.set_length(0);
 });
 openfl_display_MovieClip.__useParentFPS = false;
-openfl_events_Event.__pool = new lime_utils_ObjectPool(null,null,20);
-openfl_events_Event.ACTIVATE = "activate";
-openfl_events_Event.ADDED = "added";
-openfl_events_Event.ADDED_TO_STAGE = "addedToStage";
-openfl_events_Event.CANCEL = "cancel";
-openfl_events_Event.CHANGE = "change";
-openfl_events_Event.CLEAR = "clear";
-openfl_events_Event.CLOSE = "close";
-openfl_events_Event.COMPLETE = "complete";
-openfl_events_Event.CONNECT = "connect";
-openfl_events_Event.CONTEXT3D_CREATE = "context3DCreate";
-openfl_events_Event.COPY = "copy";
-openfl_events_Event.CUT = "cut";
-openfl_events_Event.DEACTIVATE = "deactivate";
-openfl_events_Event.ENTER_FRAME = "enterFrame";
-openfl_events_Event.EXIT_FRAME = "exitFrame";
-openfl_events_Event.FRAME_CONSTRUCTED = "frameConstructed";
-openfl_events_Event.FRAME_LABEL = "frameLabel";
-openfl_events_Event.FULLSCREEN = "fullScreen";
-openfl_events_Event.ID3 = "id3";
-openfl_events_Event.INIT = "init";
-openfl_events_Event.MOUSE_LEAVE = "mouseLeave";
-openfl_events_Event.OPEN = "open";
-openfl_events_Event.PASTE = "paste";
-openfl_events_Event.REMOVED = "removed";
-openfl_events_Event.REMOVED_FROM_STAGE = "removedFromStage";
-openfl_events_Event.RENDER = "render";
-openfl_events_Event.RESIZE = "resize";
-openfl_events_Event.SCROLL = "scroll";
-openfl_events_Event.SELECT = "select";
-openfl_events_Event.SELECT_ALL = "selectAll";
-openfl_events_Event.SOUND_COMPLETE = "soundComplete";
-openfl_events_Event.TAB_CHILDREN_CHANGE = "tabChildrenChange";
-openfl_events_Event.TAB_ENABLED_CHANGE = "tabEnabledChange";
-openfl_events_Event.TAB_INDEX_CHANGE = "tabIndexChange";
-openfl_events_Event.TEXTURE_READY = "textureReady";
-openfl_events_Event.UNLOAD = "unload";
-openfl_events_TextEvent.LINK = "link";
-openfl_events_TextEvent.TEXT_INPUT = "textInput";
-openfl_events_DataEvent.DATA = "data";
-openfl_events_DataEvent.UPLOAD_COMPLETE_DATA = "uploadCompleteData";
-FLEvent.SHOW = "showSubTitles";
-FLEvent.HIDE = "hideSubTitles";
 haxe_Serializer.USE_CACHE = false;
 haxe_Serializer.USE_ENUM_INDEX = false;
 haxe_Serializer.BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%:";
@@ -73163,7 +73074,46 @@ openfl_display3D_UniformMap.__meta__ = { obj : { SuppressWarnings : ["checkstyle
 openfl_display3D_textures_TextureBase.__meta__ = { fields : { __textureContext : { SuppressWarnings : ["checkstyle:Dynamic"]}, __getGLFramebuffer : { SuppressWarnings : ["checkstyle:Dynamic"]}}};
 openfl_display3D_textures_Texture.__lowMemoryMode = false;
 openfl_errors_Error.DEFAULT_TO_STRING = "Error";
+openfl_events_Event.__pool = new lime_utils_ObjectPool(null,null,20);
+openfl_events_Event.ACTIVATE = "activate";
+openfl_events_Event.ADDED = "added";
+openfl_events_Event.ADDED_TO_STAGE = "addedToStage";
+openfl_events_Event.CANCEL = "cancel";
+openfl_events_Event.CHANGE = "change";
+openfl_events_Event.CLEAR = "clear";
+openfl_events_Event.CLOSE = "close";
+openfl_events_Event.COMPLETE = "complete";
+openfl_events_Event.CONNECT = "connect";
+openfl_events_Event.CONTEXT3D_CREATE = "context3DCreate";
+openfl_events_Event.COPY = "copy";
+openfl_events_Event.CUT = "cut";
+openfl_events_Event.DEACTIVATE = "deactivate";
+openfl_events_Event.ENTER_FRAME = "enterFrame";
+openfl_events_Event.EXIT_FRAME = "exitFrame";
+openfl_events_Event.FRAME_CONSTRUCTED = "frameConstructed";
+openfl_events_Event.FRAME_LABEL = "frameLabel";
+openfl_events_Event.FULLSCREEN = "fullScreen";
+openfl_events_Event.ID3 = "id3";
+openfl_events_Event.INIT = "init";
+openfl_events_Event.MOUSE_LEAVE = "mouseLeave";
+openfl_events_Event.OPEN = "open";
+openfl_events_Event.PASTE = "paste";
+openfl_events_Event.REMOVED = "removed";
+openfl_events_Event.REMOVED_FROM_STAGE = "removedFromStage";
+openfl_events_Event.RENDER = "render";
+openfl_events_Event.RESIZE = "resize";
+openfl_events_Event.SCROLL = "scroll";
+openfl_events_Event.SELECT = "select";
+openfl_events_Event.SELECT_ALL = "selectAll";
+openfl_events_Event.SOUND_COMPLETE = "soundComplete";
+openfl_events_Event.TAB_CHILDREN_CHANGE = "tabChildrenChange";
+openfl_events_Event.TAB_ENABLED_CHANGE = "tabEnabledChange";
+openfl_events_Event.TAB_INDEX_CHANGE = "tabIndexChange";
+openfl_events_Event.TEXTURE_READY = "textureReady";
+openfl_events_Event.UNLOAD = "unload";
 openfl_events_ActivityEvent.ACTIVITY = "activity";
+openfl_events_TextEvent.LINK = "link";
+openfl_events_TextEvent.TEXT_INPUT = "textInput";
 openfl_events_ErrorEvent.ERROR = "error";
 openfl_events__$EventDispatcher_DispatchIterator.__meta__ = { obj : { SuppressWarnings : ["checkstyle:FieldDocComment"]}};
 openfl_events__$EventDispatcher_Listener.__meta__ = { obj : { SuppressWarnings : ["checkstyle:FieldDocComment"]}};

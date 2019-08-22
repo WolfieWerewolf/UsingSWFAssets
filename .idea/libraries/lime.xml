@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lime" type="Haxe">
+    <CLASSES>
+      <root url="file://$USER_HOME$/haxe/lime/src" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/haxe/lime/src" />
+    </SOURCES>
+  </library>
+</component>

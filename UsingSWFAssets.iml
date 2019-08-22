@@ -11,5 +11,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="openfl" level="project" />
+    <orderEntry type="library" name="lime" level="project" />
   </component>
 </module>
