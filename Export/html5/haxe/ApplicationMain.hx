@@ -32,7 +32,7 @@ class ApplicationMain
 
 		ManifestResources.init(config);
 
-		app.meta["build"] = "2";
+		app.meta["build"] = "3";
 		app.meta["company"] = "OpenFL";
 		app.meta["file"] = "UsingSWFAssets";
 		app.meta["name"] = "Using SWF Assets";
